@@ -41,6 +41,7 @@ export class ProductsPageComponent {
   }
 
   toggleShowProductCode() {
-    this.showProductCode = !this.showProductCode;
+   // this.showProductCode = !this.showProductCode;
+   this.store.dispatch({type: '[Products Page] Toggle Show Product Code'})
   }
 }

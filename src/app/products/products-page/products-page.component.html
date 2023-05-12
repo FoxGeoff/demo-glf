@@ -4,6 +4,7 @@
 
 <div *ngIf="!loading; else loadingElement">
   <div class="container">
+    <!-- (toggleProductCode)="toggleShowProductCode()" -->
     <app-products-list
       [total]="total"
       [products]="products"

@@ -92,7 +92,7 @@ export class ProductsPageComponent {
 
 ![Initial Store](src\assets\init-store.png)
 
-### Task: Add A Products Reducer
+### Task: Add A Products Reducer to process actions
 
 1. Add: products/stateproducts.reducer.ts
 
@@ -119,3 +119,66 @@ export const productReducer = createReducer(
 1. file:  products.module.ts `StoreModule.forFeature('products', productReducer)`
 
 ![Initial Store set true](src\assets\show-products-code-true.png)
+
+### Task: Dispatch an Action to Change State
+
+```html
+<!-- products-page template  -->
+...
+<div *ngIf="!loading; else loadingElement">
+  <div class="container">
+    <!-- (toggleProductCode)="toggleShowProductCode()" -->
+    <app-products-list
+      [total]="total"
+      [products]="products"
+      [showProductCode]="showProductCode"
+      (toggleProductCode)="toggleShowProductCode()"
+    ></app-products-list>
+  </div>
+</div>
+```
+
+```html
+<!-- products-list template  -->
+...
+<li>
+      Total: {{ this.total | currency }}
+      <div>
+        <!--  (change)="toggleProductCode.emit()"  -->
+        <input
+          id="showProductCode"
+          type="checkbox"
+          (change)="toggleProductCode.emit()"
+          [checked]="showProductCode"
+        />
+        <label for="showProductCode">Show Product Code</label>
+      </div>
+    </li>
+    ...
+    ```
+```
+
+```typescript
+//products.reucer.ts
+import { createAction, createReducer, on } from "@ngrx/store";
+
+export interface ProductState {
+  showProductCode: boolean;
+}
+
+const initialState: ProductState = {
+  showProductCode: true
+}
+
+export const productReducer = createReducer(
+  initialState,
+  on(createAction('[Products Page] Toggle Show Product Code'), (state) => ({
+    ...state,
+    showProductCode: !state.showProductCode
+  }))
+)
+```
+
+insert imge here
+
+===
