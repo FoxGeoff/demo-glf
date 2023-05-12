@@ -87,3 +87,7 @@ export class ProductsPageComponent {
   }
   ...
   ```
+
+### Note: Our store has been initialized
+
+![Initial Store](src\assets\init-store.png)
