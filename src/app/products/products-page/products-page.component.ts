@@ -13,7 +13,10 @@ export class ProductsPageComponent {
   products: Product[] = [];
   total = 0;
   loading = true;
-  showProductCode = false;
+  //showProductCode = false; replaced by observable
+  showProductCode$ =  this.store.select(
+    (state: any) => state.products.showProductCode
+  );
   errorMessage = '';
 
   constructor(

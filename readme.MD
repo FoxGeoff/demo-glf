@@ -182,3 +182,45 @@ export const productReducer = createReducer(
 insert imge here
 
 ===
+
+### Task:Bind the store value
+
+```Typescript
+// product-page.component.ts
+export class ProductsPageComponent {
+  products: Product[] = [];
+  total = 0;
+  loading = true;
+  //showProductCode = false; replaced by observable
+    //showProductCode = false; replaced by observable
+  showProductCode$ =  this.store.select(
+    (state: any) => state.products.showProductCode
+  );
+  errorMessage = '';
+
+  constructor(
+    private productsService: ProductsService,
+    private store: Store
+  ) {
+    this.store.subscribe((store) => {
+      console.log(store);
+    })
+  }
+```
+
+```html
+<!-- products-page.component.html  -->
+...
+<div *ngIf="!loading; else loadingElement">
+  <div class="container">
+    <!-- (toggleProductCode)="toggleShowProductCode()" -->
+    <app-products-list
+      [total]="total"
+      [products]="products"
+      [showProductCode]="showProductCode$ | async" ,<!--here-->
+      (toggleProductCode)="toggleShowProductCode()"
+    ></app-products-list>
+  </div>
+</div>
+...
+```
