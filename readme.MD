@@ -2,7 +2,7 @@
 
 ## First Look
 
-### Task: Toggle Show Product Code
+### Task: Toggle Show Product Code [First Demo]
 
 Add Imports to app.module.ts and products.module
 
@@ -66,3 +66,24 @@ import {  StoreModule } from '@ngrx/store'
 })
 export class ProductsModule { }
 ```
+
+1. Dependence Injection of `store` and `subscribe` in ProductsPageComponent
+
+```typescript
+export class ProductsPageComponent {
+  products: Product[] = [];
+  total = 0;
+  loading = true;
+  showProductCode = false;
+  errorMessage = '';
+
+  constructor(
+    private productsService: ProductsService,
+    private store: Store
+  ) {
+    this.store.subscribe((store) => {
+      console.log(store);
+    })
+  }
+  ...
+  ```
