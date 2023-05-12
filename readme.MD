@@ -91,3 +91,31 @@ export class ProductsPageComponent {
 ### Note: Our store has been initialized
 
 ![Initial Store](src\assets\init-store.png)
+
+### Task: Add A Products Reducer
+
+1. Add: products/stateproducts.reducer.ts
+
+```typescript
+import { createAction, createReducer, on } from "@ngrx/store";
+
+export interface ProductState {
+  showProductCode: boolean;
+}
+
+const initialState: ProductState = {
+  showProductCode: true
+}
+
+export const productReducer = createReducer(
+  initialState,
+  on(createAction('[Products Page] toggle Show  Product Code'), (state) => ({
+    ...state,
+    showProductCode: !state.showProductCode
+  }))
+)
+```
+
+1. file:  products.module.ts `StoreModule.forFeature('products', productReducer)`
+
+![Initial Store set true](src\assets\show-products-code-true.png)
