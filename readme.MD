@@ -226,4 +226,4 @@ export class ProductsPageComponent {
 ...
 ```
 
-### Task: Add NgRx
+### Task: Add NgRx.
