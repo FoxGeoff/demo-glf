@@ -226,4 +226,43 @@ export class ProductsPageComponent {
 ...
 ```
 
-### Task: Add NgRx.
+### Task: Add NgRx Effects
+
+1. run `npm i @ngrx/effects`
+2.
+
+```typescript
+@NgModule({
+  declarations: [AppComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot({}) // here
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+```typescript
+@NgModule({
+  declarations: [
+    ProductsPageComponent,
+    ProductsListComponent,
+    ProductEditComponent,
+    ProductPageComponent,
+  ],
+  imports: [
+    CommonModule,
+    ProductsRoutingModule,
+    ReactiveFormsModule,
+    StoreModule.forFeature('products', productReducer),
+    EffectsModule.forFeature({}) //here
+  ]
+})
+export class ProductsModule { }
+```
