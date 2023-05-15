@@ -226,6 +226,12 @@ export class ProductsPageComponent {
 ...
 ```
 
+### Task: Add Strongly Typing Actions with Action Creators
+
+1. HERE 5-15-2023
+
+===
+
 ### Task: Add NgRx Effects
 
 1. run `npm i @ngrx/effects`
@@ -266,3 +272,5 @@ export class AppModule {}
 })
 export class ProductsModule { }
 ```
+
+1. create "state/products.effects.ts " (from service)
