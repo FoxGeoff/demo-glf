@@ -228,7 +228,7 @@ export class ProductsPageComponent {
 
 ### Task: Add Strongly Typing Actions with Action Creators
 
-1. HERE 5-15-2023
+1. HERE 5-15-2023 HERE 5-16-2023
 
 ===
 
