@@ -273,4 +273,4 @@ export class AppModule {}
 export class ProductsModule { }
 ```
 
-1. create "state/products.effects.ts " (from service).
+1. create "state/products.effects.ts " (from service)
