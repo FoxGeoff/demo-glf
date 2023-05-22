@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "start": "nx serve",
+    "build": "nx build",
+    "watch": "nx build --watch --configuration development"
   },
   "private": true,
   "dependencies": {
@@ -26,8 +26,15 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.0",
+    "@angular-devkit/core": "~16.0.0",
+    "@angular-devkit/schematics": "~16.0.0",
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "^16.0.0",
+    "@nrwl/angular": "15.9.4",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/workspace": "15.9.4",
+    "@schematics/angular": "~16.0.0",
+    "nx": "15.9.4",
     "typescript": "~4.9.4"
   }
 }
