@@ -279,3 +279,5 @@ export class ProductsModule { }
 ### Task: Strongly Typing Actions with Action Creaters
 
 1. Ref.  Video: <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
+2. Demo Starts Here <https://app.pluralsight.com/course-player?clipId=b4d951e3-75a8-4011-8009-c8167ebfbf55>
+3. Create File `state/products.actions.ts`
