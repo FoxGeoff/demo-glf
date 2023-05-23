@@ -354,6 +354,7 @@ export const productReducer = createReducer(
   }))
 );
 ```
+
   ![Initial Store](src\assets\init-store2.png)
 
 Working!
