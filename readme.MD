@@ -276,8 +276,83 @@ export class ProductsModule { }
 1. create "state/products.effects.ts " (from service)
 2. Video clip Unit #5 <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
 
+### Tasks: Install Dev Tools and Debugging
+
+1. run `npm install @ngrx/store-devtools --save`
+
+```typescript
+...
+@NgModule({
+  declarations: [AppComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx Demo App',
+      maxAge: 25,
+      logOnly: environment.production
+    }),
+    ...
+  ```
+
+  ![Initial Store](src\assets\init-store2.png)
+
+1. Ref. Video <https://app.pluralsight.com/course-player?clipId=35fe82ac-fd1c-4730-8561-ca9556e8cfc3>
+
 ### Task: Strongly Typing Actions with Action Creaters
 
 1. Ref.  Video: <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
 2. Demo Starts Here <https://app.pluralsight.com/course-player?clipId=b4d951e3-75a8-4011-8009-c8167ebfbf55>
 3. Create File `state/products.actions.ts`
+
+```typescript
+// product.actions.ts
+...
+import { createActionGroup, emptyProps } from "@ngrx/store";
+
+export const ProductPageActions = createActionGroup({
+  source: 'Products Page',
+  events: {
+    'Toggle Show Product Code': emptyProps(),
+  }
+})
+```
+
+```typescript
+//products-page.component.ts
+...
+ toggleShowProductCode() {
+   // this.showProductCode = !this.showProductCode;
+   // this.store.dispatch({type: '[Products Page] Toggle Show Product Code'})
+   this.store.dispatch(ProductPageActions.toggleShowProductCode())
+  }
+...
+```
+
+``` typescript
+//products.reducer.ts
+...
+import { createAction, createReducer, on } from "@ngrx/store";
+import { ProductPageActions } from "./products.actions"
+import { state } from "@angular/animations";
+
+export interface ProductState {
+  showProductCode: boolean;
+}
+
+const initialState: ProductState = {
+  showProductCode: true
+}
+
+export const productReducer = createReducer(
+  initialState,
+  //on(createAction('[Products Page] Toggle Show Product Code'), (state) => ({
+  on(ProductPageActions.toggleShowProductCode, (state) => ({
+    ...state,
+    showProductCode: !state.showProductCode
+  }))
+);
+```
