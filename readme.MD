@@ -275,3 +275,7 @@ export class ProductsModule { }
 
 1. create "state/products.effects.ts " (from service)
 2. Video clip Unit #5 <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
+
+### Task: Strongly Typing Actions with Action Creaters
+
+1. Ref.  Video: <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
