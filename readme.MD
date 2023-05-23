@@ -298,8 +298,6 @@ export class ProductsModule { }
     ...
   ```
 
-  ![Initial Store](src\assets\init-store2.png)
-
 1. Ref. Video <https://app.pluralsight.com/course-player?clipId=35fe82ac-fd1c-4730-8561-ca9556e8cfc3>
 
 ### Task: Strongly Typing Actions with Action Creaters
@@ -356,3 +354,6 @@ export const productReducer = createReducer(
   }))
 );
 ```
+  ![Initial Store](src\assets\init-store2.png)
+
+Working!
