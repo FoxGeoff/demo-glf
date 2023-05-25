@@ -353,6 +353,7 @@ export const productReducer = createReducer(
     showProductCode: !state.showProductCode
   }))
 );
+
 ```
 
   ![Initial Store](src\assets\init-store2.png)
