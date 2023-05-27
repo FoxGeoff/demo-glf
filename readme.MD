@@ -11,17 +11,17 @@ Add Imports to app.module.ts and products.module
 3. product.module.ts add `StoreModule.forFeature('products', {})` // second var is the reducer
 
 ```typescript
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { InMemoryDataService } from './in-memory-data.service';
-import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { InMemoryDataService } from "./in-memory-data.service";
+import { HomeComponent } from "./home/home.component";
 
-import {  StoreModule } from '@ngrx/store' //added
+import { StoreModule } from "@ngrx/store"; //added
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -30,7 +30,7 @@ import {  StoreModule } from '@ngrx/store' //added
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
-    StoreModule.forRoot({}) // added
+    StoreModule.forRoot({}), // added
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -39,16 +39,16 @@ export class AppModule {}
 ```
 
 ```typescript
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsPageComponent } from './products-page/products-page.component';
-import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductEditComponent } from './product-edit/product-edit.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ProductPageComponent } from './product-page/product-page.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ProductsRoutingModule } from "./products-routing.module";
+import { ProductsPageComponent } from "./products-page/products-page.component";
+import { ProductsListComponent } from "./products-list/products-list.component";
+import { ProductEditComponent } from "./product-edit/product-edit.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ProductPageComponent } from "./product-page/product-page.component";
 
-import {  StoreModule } from '@ngrx/store'
+import { StoreModule } from "@ngrx/store";
 
 @NgModule({
   declarations: [
@@ -61,10 +61,10 @@ import {  StoreModule } from '@ngrx/store'
     CommonModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('products', {}) // added, first var is feature module, second var is the reducer(TBD)
-  ]
+    StoreModule.forFeature("products", {}), // added, first var is feature module, second var is the reducer(TBD)
+  ],
 })
-export class ProductsModule { }
+export class ProductsModule {}
 ```
 
 1. Dependence Injection of `store` and `subscribe` in ProductsPageComponent
@@ -86,7 +86,7 @@ export class ProductsPageComponent {
     })
   }
   ...
-  ```
+```
 
 ### Note: Our store has been initialized
 
@@ -104,19 +104,19 @@ export interface ProductState {
 }
 
 const initialState: ProductState = {
-  showProductCode: true
-}
+  showProductCode: true,
+};
 
 export const productReducer = createReducer(
   initialState,
-  on(createAction('[Products Page] toggle Show  Product Code'), (state) => ({
+  on(createAction("[Products Page] toggle Show  Product Code"), (state) => ({
     ...state,
-    showProductCode: !state.showProductCode
+    showProductCode: !state.showProductCode,
   }))
-)
+);
 ```
 
-1. file:  products.module.ts `StoreModule.forFeature('products', productReducer)`
+1. file: products.module.ts `StoreModule.forFeature('products', productReducer)`
 
 ![Initial Store set true](src\assets\show-products-code-true.png)
 
@@ -138,25 +138,24 @@ export const productReducer = createReducer(
 </div>
 ```
 
-```html
+````html
 <!-- products-list template  -->
 ...
 <li>
-      Total: {{ this.total | currency }}
-      <div>
-        <!--  (change)="toggleProductCode.emit()"  -->
-        <input
-          id="showProductCode"
-          type="checkbox"
-          (change)="toggleProductCode.emit()"
-          [checked]="showProductCode"
-        />
-        <label for="showProductCode">Show Product Code</label>
-      </div>
-    </li>
-    ...
-    ```
-```
+  Total: {{ this.total | currency }}
+  <div>
+    <!--  (change)="toggleProductCode.emit()"  -->
+    <input
+      id="showProductCode"
+      type="checkbox"
+      (change)="toggleProductCode.emit()"
+      [checked]="showProductCode"
+    />
+    <label for="showProductCode">Show Product Code</label>
+  </div>
+</li>
+... ```
+````
 
 ```typescript
 //products.reucer.ts
@@ -167,16 +166,16 @@ export interface ProductState {
 }
 
 const initialState: ProductState = {
-  showProductCode: true
-}
+  showProductCode: true,
+};
 
 export const productReducer = createReducer(
   initialState,
-  on(createAction('[Products Page] Toggle Show Product Code'), (state) => ({
+  on(createAction("[Products Page] Toggle Show Product Code"), (state) => ({
     ...state,
-    showProductCode: !state.showProductCode
+    showProductCode: !state.showProductCode,
   }))
-)
+);
 ```
 
 insert imge here
@@ -218,9 +217,11 @@ export class ProductsPageComponent {
     <app-products-list
       [total]="total"
       [products]="products"
-      [showProductCode]="showProductCode$ | async" ,<!--here-->
-      (toggleProductCode)="toggleShowProductCode()"
-    ></app-products-list>
+      [showProductCode]="showProductCode$ | async"
+      ,<!--here--
+    >
+      (toggleProductCode)="toggleShowProductCode()" ></app-products-list
+    >
   </div>
 </div>
 ...
@@ -246,7 +247,7 @@ export class ProductsPageComponent {
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService),
     StoreModule.forRoot({}),
-    EffectsModule.forRoot({}) // here
+    EffectsModule.forRoot({}), // here
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -266,11 +267,11 @@ export class AppModule {}
     CommonModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('products', productReducer),
-    EffectsModule.forFeature({}) //here
-  ]
+    StoreModule.forFeature("products", productReducer),
+    EffectsModule.forFeature({}), //here
+  ],
 })
-export class ProductsModule { }
+export class ProductsModule {}
 ```
 
 1. create "state/products.effects.ts " (from service)
@@ -296,13 +297,13 @@ export class ProductsModule { }
       logOnly: environment.production
     }),
     ...
-  ```
+```
 
 1. Ref. Video <https://app.pluralsight.com/course-player?clipId=35fe82ac-fd1c-4730-8561-ca9556e8cfc3>
 
 ### Task: Strongly Typing Actions with Action Creaters
 
-1. Ref.  Video: <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
+1. Ref. Video: <https://app.pluralsight.com/course-player?clipId=306e1e36-cd6f-47c7-8307-9f649db6b522>
 2. Demo Starts Here <https://app.pluralsight.com/course-player?clipId=b4d951e3-75a8-4011-8009-c8167ebfbf55>
 3. Create File `state/products.actions.ts`
 
@@ -330,7 +331,7 @@ export const ProductPageActions = createActionGroup({
 ...
 ```
 
-``` typescript
+```typescript
 //products.reducer.ts
 ...
 import { createAction, createReducer, on } from "@ngrx/store";
@@ -356,4 +357,6 @@ export const productReducer = createReducer(
 
 ```
 
-  ![Initial Store](src\assets\init-store2.png) Working!
+![Initial Store](src\assets\init-store2.png)
+
+Working!

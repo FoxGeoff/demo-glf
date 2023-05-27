@@ -11,7 +11,7 @@
         <div>{{ product.name }}</div>
         <div>
           {{ product.price | currency }}
-          <ng-container *ngIf="showProductCode">
+          <ng-container >
             Product Code: {{ product.id }}
           </ng-container>
         </div>
